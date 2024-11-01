@@ -9,14 +9,16 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+echo "please enter mysql password"
+read -s my_sql_password
 
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo -e "$2 $R ***installation Failure*** $N"
+        echo -e "$R $2  ***installation Failure*** $N"
         exit 1
     else
-        echo -e "$2 $G ***installation Success*** $N"
+        echo -e "$G $2  ***installation Success*** $N"
     fi
 }
 
@@ -40,11 +42,11 @@ VALIDATE $? "staring mysql-server"
 # mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$logfile
 # VALIDATE $? "setting up root password for mysql-server"
 
-mysql -h db.daws79s.online -uroot -pExpenseApp@1 -e 'SHOW DATABASES;'
+mysql -h db.daws79s.online -uroot -p$my_sql_password -e 'SHOW DATABASES;'
 if [ $? -ne 0 ]
 then
     echo -e "$Y *** installing My Sql *** $N"
-    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$logfile
+    mysql_secure_installation --set-root-pass $my_sql_password &>>$logfile
     VALIDATE $? "setting up root password for mysql-server"
 else
     echo -e "$G My Sql root password already setup $Y *** Skipping *** $N"

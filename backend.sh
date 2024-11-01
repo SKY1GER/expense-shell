@@ -25,6 +25,7 @@ then
 else
     echo "you are a super user"
 fi
+
 dnf module disable nodejs -y &>>$logfile
 validate $? "$Y sccessfully disabled $N"
 
@@ -34,7 +35,7 @@ validate $? "$Y enabled nodejs:20 $N"
 dnf install nodejs -y &>>$logfile
 validate $? "$Y installed nodejs:20 $N"
 
-id expense
+id expense &>>$logfile
 if [ $? -ne 0 ]
 then
     useradd expense &>>$logfile

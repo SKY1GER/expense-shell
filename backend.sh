@@ -43,3 +43,19 @@ then
 else
     echo -e "$G ***userexpense already present*** $Y ***Skipping*** $N"
 fi
+
+mkdir -p /app
+
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+validate $? "$Y ***downling backend code*** $N"
+
+
+cd /app
+
+unzip /tmp/backend.zip
+validate $? "$Y ***unzipping backend file*** $N"
+
+cd /app
+
+npm install
+validate $? "$G ***installing npm*** $N"

@@ -27,13 +27,13 @@ else
 fi
 
 dnf module disable nodejs -y &>>$logfile
-validate $? "$Y sccessfully disabled $N"
+validate $? "$G sccessfully disabled $N"
 
 dnf module enable nodejs:20 -y &>>$logfile
-validate $? "$Y enabled nodejs:20 $N"
+validate $? "$G enabled nodejs:20 $N"
 
 dnf install nodejs -y &>>$logfile
-validate $? "$Y installed nodejs:20 $N"
+validate $? "$G installed nodejs:20 $N"
 
 id expense &>>$logfile
 if [ $? -ne 0 ]
@@ -41,5 +41,5 @@ then
     useradd expense &>>$logfile
     validate $? "$G user expense added $N"
 else
-    echo -e "$G ***userexpense already present*** $N"
+    echo -e "$G ***userexpense already present*** $Y ***Skipping*** $N"
 fi

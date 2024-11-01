@@ -24,7 +24,7 @@ then
     exit
 else
     echo "you are a super user"
-
+fi
 dnf module disable nodejs -y &>>$logfile
 validate $? "$Y sccessfully disabled $N"
 

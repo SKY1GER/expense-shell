@@ -9,7 +9,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 echo "please enter the password"
-read -s $password
+read -s password
 
 if [ $userid -ne 0 ]
 then

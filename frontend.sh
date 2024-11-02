@@ -15,8 +15,8 @@ if [ $userid -ne 0 ]
 then
     echo -e "$R ***Please run the script in super user*** $N"
 else
-     echo -e "$G ***You are a super user*** $N"
-    
+    echo -e "$G ***You are a super user*** $N"
+fi   
 
 validate(){
     if [ $1 -ne 0 ]

@@ -15,4 +15,3 @@ echo "please enter mysql password"
 read -s my_sql_password
 
 dnf install rfyhyvg -y &>>$logfile #script will exit here because of set -e
-VALIDATE $? "$G installed nodejs:20 $N"

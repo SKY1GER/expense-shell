@@ -5,7 +5,7 @@ set -e
 handle_error(){
    echo "error occured at line no. $1 : error comand is $2"
 }
-trap "handle_error ${LINENO} "$BASH_COMMAND"' ERR
+trap 'handle_error ${LINENO} "$BASH_COMMAND"' ERR
 
 source ./common.sh
 

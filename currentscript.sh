@@ -6,4 +6,4 @@ echo "PID of current script:$$"
 
 ./otherscript.sh
 
-echo "After calling other script:$Course
+echo "After calling other script:$Course"

@@ -14,4 +14,14 @@ else
     echo -e "$R $SOURCEDIRECTORY not exist $R"
     exit 1
 fi
+
+filestobedeleted=$(find $SOURCEDIRECTORY -name "*.log" -mtime +09)
+
+echo -e"$R files to be deleted $filestobedeleted $N"
+
+while IFS=read -r line
+do
+echo -e "$R file to be deleted:$line"
+rm -rf $line
+done <<< $filestobedeleted
     

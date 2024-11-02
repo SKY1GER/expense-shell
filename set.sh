@@ -9,7 +9,7 @@ trap 'handle_error ${LINENO} "$BASH_COMMAND"' ERR
 
 
 
-check_root
+
 
 echo "please enter mysql password"
 read -s my_sql_password

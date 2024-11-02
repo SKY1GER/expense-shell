@@ -7,6 +7,8 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+echo "please enter mysql password"
+read -s my_sql_password
 
 validate(){
 if [ $1 -ne 0 ]
@@ -44,18 +46,42 @@ else
     echo -e "$G ***userexpense already present*** $Y ***Skipping*** $N"
 fi
 
-mkdir -p /app
+mkdir -p /app &>>$logfile
 
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$logfile
 validate $? "$Y ***downling backend code*** $N"
 
 
-cd /app
-
-unzip /tmp/backend.zip
+cd /app &>>$logfile
+rm -rf /app/*
+unzip /tmp/backend.zip &>>$logfile
 validate $? "$Y ***unzipping backend file*** $N"
 
-cd /app
-
-npm install
+cd /app &>>$logfile
+npm install &>>$logfile
 validate $? "$G ***installing npm*** $N"
+
+cp /home/ec2-user/expense-shell/backend.service  /etc/systemd/system/backend.service &>>$logfile
+validate $? "copied backend service"
+
+systemctl daemon-reload &>>$logfile
+validate $? "daemon-reload"
+
+systemctl start backend &>>$logfile
+validate $? "start backend"
+
+systemctl enable backend &>>$logfile
+validate $? "enable backend"
+
+
+dnf install mysql-server -y &>>$logfile
+validate $? "mysql-server"
+
+mysql -h db.daws79s.online -uroot -p${my_sql_password} < /app/schema/backend.sql &>>$logfile
+validate $? "loading schema"
+#sudo cat /app/schema/backend.sql
+
+systemctl restart backend &>>$logfile
+validate $? "restating backend"
+
+#systemctl status backend

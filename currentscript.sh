@@ -5,5 +5,5 @@ echo "Before calling other script:$Course"
 echo "PID of current script:$$"
 
 #./otherscript.sh
-source otherscript
+source ./otherscript.sh
 echo "After calling other script:$Course"

@@ -7,7 +7,7 @@ handle_error(){
 }
 trap 'handle_error ${LINENO} "$BASH_COMMAND"' ERR
 
-source ./common.sh
+
 
 check_root
 

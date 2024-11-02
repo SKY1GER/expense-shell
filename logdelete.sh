@@ -17,11 +17,11 @@ fi
 
 filestobedeleted=$(find $SOURCEDIRECTORY -name "*.log" -mtime +09)
 
-echo -e"$R files to be deleted $filestobedeleted $N"
+echo -e "$R files to be deleted $filestobedeleted $N"
 
 while IFS=read -r line
 do
-echo -e "$R file to be deleted:$line"
+echo -e "$R file to be deleted:$line $N"
 rm -rf $line
 done <<< $filestobedeleted
     

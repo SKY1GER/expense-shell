@@ -11,8 +11,8 @@ Message=''
     folder=$(echo $line | awk -F " " '{print $NF}' )
     if [ $usage -ge $Threshold ]
     then
-        Message+="$folder is more than $Threshold, current usage :$usage"
+        Message+="$folder is more than $Threshold, current usage :$usage\n"
     fi
  done <<< $Files
 
- echo "Message is : $Message"
+ echo -e "Message is : $Message"

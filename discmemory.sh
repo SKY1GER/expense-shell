@@ -8,9 +8,11 @@ Message=''
  do
  usage=$($line | awk -F "" '{print 6F}')
  folder=$($line | awk -F "" '{print NF}')
- if [ size -ge $Threshold]
+ if [ $usage -ge $Threshold]
  then
     Message+="$folder is more than $Threshold, current usage :$usage"
+ else
+    echo "$folder is in range ofd $Threshold, current usage :$usage
  done <<<$Files
 
  echo "Message is : $Message"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Files=(df -hT | grep xfs)
+Files=$(df -hT | grep xfs)
 Threshold=10
 Message=''
 
@@ -10,7 +10,7 @@ Message=''
  folder=$($line | awk -F "" '{print NF}')
  if [ size -ge $Threshold]
  then
-    Message="$folder is more than $Threshold, current usage :$usage"
+    Message+="$folder is more than $Threshold, current usage :$usage"
  done <<<$Files
 
  echo "Message is : $Message"

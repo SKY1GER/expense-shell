@@ -1,6 +1,7 @@
 #!/bin/bash
 
 Files=$(df -hT | grep xfs)
+echo "$Files"
 Threshold=10
 Message=''
 

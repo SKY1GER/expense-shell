@@ -12,7 +12,7 @@ Message=''
  then
     Message+="$folder is more than $Threshold, current usage :$usage"
  else
-    echo "$folder is in range ofd $Threshold, current usage :$usage
+    echo "$folder is in range ofd $Threshold, current usage :$usage"
  fi
  done <<<$Files
 

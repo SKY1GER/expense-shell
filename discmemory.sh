@@ -15,3 +15,6 @@ Message=''
  done <<< $Files
 
  echo -e "Message is : $Message"
+
+ # echo "(body)This is a test mail & Date $(date)" | mail -s "subject" toadress youyr server should have configure
+ #likegmail.MD
